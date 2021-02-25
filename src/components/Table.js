@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function Table({ todos, getNames, openModal, deleteData, users }) {
+function Table({ todos, openModal, deleteData }) {
   const [isSorted, setİsSorted] = useState(true);
   // const sorting = () => {
   //     let sortedProducts = todos
@@ -29,7 +29,7 @@ function Table({ todos, getNames, openModal, deleteData, users }) {
               <div className="table__col text-center">Assignee</div>
 
               <div className="table__col text-center">
-                <button className="btn-sort" href="#" onClick={sortToggler}>
+                <button className="btn-sort" onClick={sortToggler}>
                   Status {isSorted ? "▲" : "▼"}
                 </button>
               </div>
@@ -50,7 +50,7 @@ function Table({ todos, getNames, openModal, deleteData, users }) {
                 <li key={todo.id} className="table__line">
                   <div className="table__col">{todo.id}</div>
                   <div className="table__col col-2">{todo.title}</div>
-                  <div className="table__col text-center">asd</div>
+                  <div className="table__col text-center">{todo.userNames}</div>
                   <div className="table__col text-center">
                     {todo.completed ? "Done" : "In Progress"}
                   </div>

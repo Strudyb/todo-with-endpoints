@@ -9,8 +9,6 @@ import "./scss/App.scss";
 
 function App() {
   // data states
-  const [todos, setTodos] = useState([]);
-  const [users, setUsers] = useState([]);
   const [mergedTodos, setMergedTodos] = useState([]);
 
   // utility states
@@ -24,11 +22,11 @@ function App() {
 
   //pagination states
   const [currentPage, setCurrentPage] = useState(1);
-  const [postPerPage] = useState(200);
+  const [postPerPage] = useState(10);
 
   const indexOfLastPost = currentPage * postPerPage;
   const indexOfFirstPost = indexOfLastPost - postPerPage;
-  const currentPosts = todos.slice(indexOfFirstPost, indexOfLastPost);
+  const currentPosts = mergedTodos.slice(indexOfFirstPost, indexOfLastPost);
 
   const paginate = (e, pageNumber) => {
     e.preventDefault();
@@ -52,43 +50,20 @@ function App() {
     setmodalData(data);
   };
 
-  const merge = (arr1, arr2) => {
+  const merge = (array1, array2) => {
     const temp = [];
 
-    arr1.forEach((x) => {
-      arr2.forEach((y) => {
+    array1.forEach((x) => {
+      array2.forEach((y) => {
         if (x.userId === y.id) {
-          temp.push({ ...x, ...y });
+          const userNames = y.name;
+
+          temp.push({ ...x, userNames: userNames });
         }
       });
     });
 
     return temp;
-  };
-
-  const fetchData = async () => {
-    const todoAPI = "https://jsonplaceholder.typicode.com/todos";
-    const userAPI = "https://jsonplaceholder.typicode.com/users";
-
-    setİsPending(true);
-
-    const getTodos = await axios.get(todoAPI);
-    const getUsers = await axios.get(userAPI);
-
-    axios.all([getTodos, getUsers]).then(
-      axios.spread((...allData) => {
-        const allTodoData = allData[0];
-        const allUserData = allData[1];
-
-        setTodos(allTodoData.data);
-        setUsers(allUserData.data);
-
-        setİsPending(false);
-      })
-    );
-
-    const mergedArr = merge(users, todos);
-    console.log(mergedArr);
   };
 
   const updateData = (objId) => {
@@ -110,7 +85,7 @@ function App() {
         return response.json();
       })
       .then((json) => {
-        console.log(json);
+        console.log("your data successfully updated: " , json);
         setİsOpen(false);
         setİsPending(false);
       })
@@ -138,31 +113,46 @@ function App() {
       });
 
     // delete actually with filter
-    const newTodoList = todos.filter((x) => x.id !== id);
-    setTodos(newTodoList);
+    const newTodoList = mergedTodos.filter((x) => x.id !== id);
+    setMergedTodos(newTodoList);
   };
 
   useEffect(() => {
+    const fetchData = async () => {
+      const todoAPI = "https://jsonplaceholder.typicode.com/todos";
+      const userAPI = "https://jsonplaceholder.typicode.com/users";
+
+      setİsPending(true);
+
+      const getTodos = await axios.get(todoAPI);
+      const getUsers = await axios.get(userAPI);
+
+      axios.all([getTodos, getUsers]).then(
+        axios.spread((...allData) => {
+          const allTodoData = allData[0];
+          const allUserData = allData[1];
+
+          setMergedTodos(merge(allTodoData.data, allUserData.data));
+
+          setİsPending(false);
+        })
+      );
+    };
+
     fetchData();
   }, []);
-
-  const getNameById = (id) => {
-    return users.find((user) => user.id === id);
-  };
 
   return (
     <div className="App">
       <Header />
       <Table
         todos={currentPosts}
-        getNames={getNameById}
         openModal={openModal}
         deleteData={deleteData}
-        users={users}
       />
       <Pagination
         postPerPage={postPerPage}
-        totalPosts={todos.length}
+        totalPosts={mergedTodos.length}
         paginate={paginate}
         currentPage={currentPage}
       />

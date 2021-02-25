@@ -7,6 +7,10 @@
     display: flex;
     align-items: center;
 
+    @media (max-width: $medium) {
+      padding: 0 10px;
+    }
+
     &.table__header {
       font-weight: bold;
       font-size: 1.8rem;
