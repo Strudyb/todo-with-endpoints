@@ -1,0 +1,41 @@
+@import "variables.scss";
+@import "utilities.scss";
+@import "header.scss";
+@import "table.scss";
+@import "modal.scss";
+
+.pagination {
+  margin-bottom: 50px;
+  ul {
+    display: flex;
+    justify-content: center;
+
+    li {
+      margin-right: 5px;
+      text-align: center;
+      &:last-child {
+        margin-right: 0;
+      }
+      a {
+        display: inline-block;
+        background-color: $light-gray;
+        color: $light-black;
+        border-radius: 5px;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-weight: 600;
+
+        &:hover {
+          background-color: $blue;
+          color: #fff;
+        }
+
+        &.active {
+          background-color: $blue;
+          color: #fff;
+        }
+      }
+    }
+  }
+}

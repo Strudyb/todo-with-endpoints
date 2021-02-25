@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1.6rem;
+  background-color: $white;
+}
+
+a {
+  text-decoration: none;
+  &:visited {
+    color: $black;
+  }
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+p {
+  margin-bottom: 1rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.py-50px {
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 6px 15px;
+  border: 1px solid $black;
+  border-radius: 5px;
+  font-weight: bold;
+  color: $black;
+  transition: all .3s linear;
+}
+
+.btn:hover {
+  opacity: .7;
+}
+
+.btn-delete {
+  background-color: $red;
+  color: $white;
+  border-color: $white;
+}
+
+.btn-edit {
+  background-color: $blue;
+  color: $white;
+  border-color: $white;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex-row {
+  flex-direction: row !important;
+}
+
+.loader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0009;
+  z-index: 999;
+
+  span {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    border: 5px solid #fff;
+    border-left: none;
+    border-top: none;
+    border-bottom: none;
+    animation-name: rotate;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+  }
+}
+
+@keyframes rotate {
+  from {transform: rotate(0);}
+  to {transform: rotate(360deg);}
+}
