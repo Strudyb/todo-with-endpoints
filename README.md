@@ -1,6 +1,6 @@
 ## About Repo
 
-This project built using without 3rd packages and tools except axios. Due to project size, component drilling preferred. The purpose of the project, fetching data from the fake API, merging the related todos and users and getting the datas to the table. In the table component, you can sort, edit and delete the related datas. Available Components are:
+This project built using without 3rd packages and tools except axios. Due to project size, component drilling preferred. The purpose of the project, fetching data from the fake API, merging the related todos and users and getting the datas to the table. In the table component, you can sort, edit and delete the related datas.
 
 ### Folder Structure
     .
