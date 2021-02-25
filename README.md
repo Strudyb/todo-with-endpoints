@@ -27,16 +27,16 @@ Folder Structure:
     .
     │
     ├── components                    
-    │   ├── Header          
-    │   ├── Loader      
-    │   ├── Modal 
-    │   ├── Pagination 
-    │   └── Table                
+    │   ├── Header.js          
+    │   ├── Loader.js      
+    │   ├── Modal.js 
+    │   ├── Pagination.js 
+    │   └── Table.js                
     ├── scss
-    │    ├── _header
-    │    ├── _modal
-    │    ├── _pagination
-    │    ├── _table
-    │    ├── _utilities
-    │    └── App
-    └──
+    │    ├── _header.scss
+    │    ├── _modal.scss
+    │    ├── _pagination.scss
+    │    ├── _table.scss
+    │    ├── _utilities.scss
+    │    └── App.scss
+    └──App.js
